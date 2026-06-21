@@ -55,10 +55,12 @@ export default function Resolution() {
         <div className="mt-10 rounded-2xl p-6" style={{ background: "var(--panel2)", border: "1px solid var(--line)" }}>
           <div className="eyebrow mb-2" style={{ color: "#7c2d12" }}>The baseline it has to beat</div>
           <p className="text-sm leading-relaxed" style={{ color: "var(--ink)" }}>
-            A forecast that just echoes the prior year is the null hypothesis. The naive baseline predicts that the
-            most prominent themes of NeurIPS 2025 simply repeat in 2026. If reading this year&apos;s leading
-            indicators does no better than that, the forecast has shown nothing. The claim is only interesting if it
-            calls fresh directions the baseline would have missed, and is right.
+            A forecast that just echoes the prior year is the null hypothesis. On the two NeurIPS years that already
+            resolved, that naive extrapolator was strong: it would have landed roughly 6 of 11 defining themes in
+            2024 and 5 of 11 in 2025 (see the <Link href="/#backtest" style={{ color: "#7c2d12" }}>backtest</Link>,
+            including the audit that corrected those numbers down). So the bar is high, and the number that matters in
+            December is not how many of the ten hit, but how many of the five beyond-baseline calls hit, the fresh
+            ones a naive extrapolator would have missed.
           </p>
         </div>
 

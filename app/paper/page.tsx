@@ -49,10 +49,11 @@ export default function Paper() {
             each fresh relative to 2024 and 2025, each carrying a falsifiable December criterion, and froze them in a
             hashed, timestamped record. We first test the method on the two NeurIPS years that have already resolved.
             That backtest, built so the outcomes and the prior-year signals are gathered by separate blind passes,
-            shows a naive extrapolator already lands most of the headline themes (7 of 11 in 2024, 6 of 11 in 2025).
-            That sets a high bar and reframes the task: a model demonstrates research taste only on the fresh,
-            specific calls the baseline misses. We describe the method, report the backtest and its two lessons, state
-            the ten predictions and their tests, and fix the scoring rule in advance.
+            shows a naive extrapolator already lands roughly half the headline themes (about 6 of 11 in 2024 and 5
+            of 11 in 2025, after two adversarial audits made us correct a first, too-flattering pass down). That sets
+            a high bar and reframes the task: a model demonstrates research taste only on the fresh, specific calls
+            the baseline misses, of which there are five. We describe the method, report the backtest and its two
+            lessons, state the ten predictions and their tests, and fix the scoring rule in advance.
           </p>
         </div>
 
@@ -130,6 +131,15 @@ export default function Paper() {
           method that extrapolates keywords misses this; one that weights arXiv and lab releases catches it. The 2026
           method does the latter. The honest division of labor: the backtest validates the method and sets the bar;
           the live forecast tests the skill against it.
+        </P>
+        <P>
+          One disclosure belongs here. The matching, which concepts count as called and the counts themselves, was
+          done by one author who had seen both the outcomes and the prior signals, so it is the project&apos;s
+          highest-risk step. Two adversarial audits attacked it and found it had drifted in the flattering direction
+          every time: a count quietly rounded up, a flat theme bundled with a surging one, a known miss dropped from
+          the denominator. The numbers above are the corrected, lower ones, and we also re-marked three of the ten
+          predictions as baseline-ish after the audit showed an extrapolator would have caught them. Both audits are
+          in the public repo. A benchmark that hides its own red-team is not one.
         </P>
 
         <H n="5">The pre-registered forecast</H>

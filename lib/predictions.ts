@@ -231,10 +231,12 @@ export const method = [
 ];
 
 export const honesty = [
-  "arXiv category counts include cross-lists — the four CS categories are never summed into a “unique” total.",
-  "Conference pipelines roughly doubled in two years — momentum is read as share, not raw count, against a NeurIPS 2026 program of ~7,000 accepts.",
-  "Unverifiable values are shown as n/a, never guessed. NeurIPS 2026 accept totals are not public until ~Sep 24, 2026.",
-  "No prediction rests on an SEO-suspect model name or an unverified late-2026 arXiv id — only on hard anchors: the track rename, ICLR/ICML 2026 orals and accept counts, AlphaProof's Erdős results, and a constant-method keyword scan. (A draft anchor — a CVPR best paper claimed to be a world model — was caught wrong in review and removed.)",
+  "n is far too small to calibrate. Ten predictions, of which about five are beyond-baseline, cannot support a claim that the confidences are well-calibrated. They are stated for ranking and transparency, not as a calibration result.",
+  "Only the ten count. The six-item watchlist and the cut concepts are sealed as non-scoring and cannot be promoted after December, whatever happens.",
+  "The forecast reads lab and arXiv momentum that the public-conference baseline cannot, so part of any edge is more inputs, not better foresight. We say so rather than hide it.",
+  "The backtest matching was done by one author who saw both the outcomes and the prior signals, so it is a judgment estimate, audited by two red-teams and corrected down, not a clean measurement.",
+  "arXiv category counts include cross-lists, so the four CS categories are never summed into a unique total. Momentum is read as share, not raw count, against a NeurIPS 2026 program of about 7,000 accepts.",
+  "No prediction rests on an SEO-suspect model name or an unverified late-2026 arXiv id, only on hard anchors: the track rename, ICLR/ICML 2026 orals and accept counts, AlphaProof's Erdős results, and a constant-method keyword scan. A draft anchor, a CVPR best paper claimed to be a world model, was caught wrong in review and removed.",
 ];
 
 export const meta = {

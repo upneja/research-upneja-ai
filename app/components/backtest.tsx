@@ -1,4 +1,4 @@
-import { backtest, baseline, lessons, leaderboard, type Called } from "../../lib/backtest";
+import { backtest, baseline, lessons, leaderboard, audit, type Called } from "../../lib/backtest";
 
 const CALLED: Record<Called, { dot: string; label: string }> = {
   yes: { dot: "#1f7a4d", label: "surging in the prior signal" },
@@ -102,6 +102,20 @@ export default function Backtest() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* the self-audit disclosure — the credibility move */}
+      <div className="mt-8 rounded-2xl p-6 sm:p-7" style={{ background: "var(--panel2)", border: "1px solid #7c2d1240" }}>
+        <div className="eyebrow mb-3" style={{ color: "#7c2d12" }}>Integrity · we red-teamed ourselves</div>
+        <h3 className="font-display leading-tight" style={{ fontSize: 22, color: "var(--ink)" }}>{audit.headline}</h3>
+        <ul className="mt-4 space-y-2.5">
+          {audit.changes.map((c) => (
+            <li key={c} className="flex gap-2.5 text-sm leading-relaxed" style={{ color: "#3c424c" }}>
+              <span className="shrink-0 font-mono" style={{ color: "#7c2d12" }}>↓</span><span>{c}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm leading-relaxed" style={{ color: "#555b66" }}>{audit.note}</p>
       </div>
     </div>
   );
