@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { scaleLinear } from "d3-scale";
 import { predictions, watchlist } from "../../lib/predictions";
 
@@ -63,19 +63,16 @@ export default function FrontierPlot() {
               onMouseEnter={() => setHover(w.id)} onMouseLeave={() => setHover(null)} onClick={() => go(w.id)} />
           ))}
 
-          {/* prediction points */}
-          {predictions.map((p, i) => {
+          {/* prediction points (plain SVG — reliable across browsers) */}
+          {predictions.map((p) => {
             const cx = x(p.noveltyScore), cy = y(p.confidence), on = hover === p.id;
             return (
-              <motion.g key={p.id}
-                initial={reduce ? false : { opacity: 0, scale: 0.4 }}
-                animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-                transition={{ delay: reduce ? 0 : 0.04 * i, type: "spring", stiffness: 220, damping: 18 }}
-                style={{ cursor: "pointer", transformOrigin: `${cx}px ${cy}px` }}
+              <g key={p.id} style={{ cursor: "pointer" }}
                 onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => go(p.id)}>
-                <circle cx={cx} cy={cy} r={on ? 17 : 14} fill="#1b3a5b" opacity={on ? 1 : 0.92} stroke="#f4f1e9" strokeWidth={2} />
+                <circle cx={cx} cy={cy} r={on ? 17 : 14} fill="#1b3a5b" opacity={on ? 1 : 0.92}
+                  stroke="#f4f1e9" strokeWidth={2} style={{ transition: "r .12s ease" }} />
                 <text x={cx} y={cy + 3.5} textAnchor="middle" className="font-mono" fontSize={10.5} fill="#fff" style={{ pointerEvents: "none" }}>{p.rank}</text>
-              </motion.g>
+              </g>
             );
           })}
         </svg>
