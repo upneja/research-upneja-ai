@@ -64,14 +64,20 @@ export default function Paper() {
           than anyone admits. The debate stalls because the usual way to resolve it is to ask people whether a
           model&apos;s ideas feel novel, and people disagree. The closest prior work, Si, Yang, and Hashimoto&apos;s
           large human study (2024), found reviewers rated machine ideas more novel than expert ideas but less
-          feasible. It is careful work, and it still inherits the core weakness: novelty was a subjective rating,
-          with no ground truth about whether the ideas were any good.
+          feasible. Their own 2025 follow-up settled it the other way: when researchers actually executed the ideas
+          over three months, the novelty advantage reversed and the machine ideas came out weaker. Proposal-time
+          judgment did not predict what the ideas were worth. That is the weakness of grading research ability by
+          asking what an idea feels like now, and it is the whole reason to wait for the answer instead.
         </P>
         <P>
           We wanted a test with an answer key, so we borrow from a different tradition: forecasting science. The
           IARPA forecasting tournaments and platforms like Metaculus do not ask whether a prediction feels smart;
-          they wait for the event and score it with proper scoring rules. We do the same to a model&apos;s sense of
-          the research frontier. And we are precise about what is measured. This is not invention from nothing. The
+          they wait for the event and score it with proper scoring rules, where stating your honest probability is
+          the optimal move. The one line of work that already uses a future answer key for research, the Science4Cast
+          benchmarks, predicts whether two concepts will eventually co-occur, scored as binary link prediction. We
+          forecast something harder and more legible: which directions become prominent, by how much, in plain
+          language, resolved against the program and scored by a proper rule. And we are precise about what is
+          measured. This is not invention from nothing. The
           model did not conjure these concepts; it read the field and bet on which fresh directions will matter,
           before the answer was public. Call it research foresight. Foresight is scoreable in a way felt-novelty is
           not, because the future arrives and settles it.
@@ -169,9 +175,13 @@ export default function Paper() {
           resolves hit or miss, with no partial credit and no moving the line. But the headline number is not
           &ldquo;X of 10 hit.&rdquo; The backtest showed why: a naive extrapolator already gets the obvious themes,
           so the measure of foresight is &ldquo;X of 10 hit, of which Y were beyond-baseline calls the extrapolator
-          would have missed.&rdquo; Y is the real score. The set is also checked for calibration, whether the
-          higher-confidence calls came true more often, though with ten predictions that signal is weak, which we
-          state rather than hide.
+          would have missed.&rdquo; Y is the real score. This is deliberate. A result from the science-of-science
+          literature is blunt about it: predicting a research topic&apos;s level is nearly trivial, while predicting
+          its change is hard, so a benchmark that scores the level looks impressive while measuring nothing.
+          Beyond-baseline scores the change. The probabilities themselves are scored by a proper rule, Brier, where
+          honest reporting is the optimal strategy. The set is also checked for calibration, whether the
+          higher-confidence calls came true more often, though with ten predictions, about five of them
+          beyond-baseline, that signal is far too weak to support a calibration claim, which we state rather than hide.
         </P>
 
         <H n="7">Limitations</H>
@@ -193,7 +203,11 @@ export default function Paper() {
           than extrapolation does. Not invention, not genius, but real judgment, written down in advance and checked.
           This is the empirical engine for a larger question we care about, the half-life of human research advantage:
           as models absorb execution, the residual human contribution migrates to taste, the ability to tell good
-          from bad before the outcome is known, and taste is exactly what a time-resolved forecast measures. The
+          from bad before the outcome is known, and taste is exactly what a time-resolved forecast measures. A
+          frontier lab now quantifies a version of this directly: on a curated set of research junctures where the
+          human had already taken a wrong turn, its model picked the better next step 51 percent of the time in
+          November 2025 and 64 percent by April 2026. That is a narrow, hindsight-aided measure, not a like-for-like
+          contest, but it is the same quantity this benchmark measures in the open. The
           leaderboard is where that gets contested, with other models and human experts as the open arms. If the
           forecast misses, that is also a result, and a more interesting one than a comfortable post-hoc story: it
           would say the model over-indexed on what looked busy in mid-2026, or that the frontier is harder to call
@@ -204,8 +218,11 @@ export default function Paper() {
         <div className="mt-16 pt-8" style={{ borderTop: "1px solid var(--line)" }}>
           <div className="eyebrow mb-4">References &amp; provenance</div>
           <ul className="space-y-2.5 font-mono text-xs leading-relaxed" style={{ color: "#555b66" }}>
-            <li>Si, Yang, Hashimoto. <span style={{ color: "var(--ink)" }}>Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers.</span> arXiv:2409.04109, 2024.</li>
-            <li>Tetlock &amp; Gardner, <span style={{ color: "var(--ink)" }}>Superforecasting</span>; the IARPA ACE forecasting tournaments; Metaculus. The lineage for scoring forecasts with proper scoring rules and calibration.</li>
+            <li>Si, Yang, Hashimoto. <span style={{ color: "var(--ink)" }}>Can LLMs Generate Novel Research Ideas?</span> arXiv:2409.04109, 2024 — and the follow-up, <span style={{ color: "var(--ink)" }}>The Ideation-Execution Gap</span>, arXiv:2506.20803, 2025, where executing the ideas reversed the novelty advantage. The foil.</li>
+            <li>Krenn et al. <span style={{ color: "var(--ink)" }}>Science4Cast</span> (Nature Machine Intelligence, 2023) and Impact4Cast (arXiv:2402.08640). The nearest ancestor: concept-link prediction by ROC-AUC, which this differentiates from by forecasting magnitude, timing, and prominence in natural language.</li>
+            <li>Gneiting &amp; Raftery, <span style={{ color: "var(--ink)" }}>Strictly Proper Scoring Rules</span> (JASA 2007); Brier 1950; Metaculus scoring; the IARPA ACE tournaments. The scoring backbone (Brier, baseline-vs-peer).</li>
+            <li>Ofer &amp; Linial, arXiv:2305.04133 — predicting a topic&apos;s level is trivial, predicting its change is hard. Why beyond-baseline scores the change, not the level.</li>
+            <li>Anthropic Institute, <span style={{ color: "var(--ink)" }}>When AI builds itself</span> (2026) — the 51%→64% research-taste figure, on a curated, hindsight-aided set.</li>
             <li>The two backtest answer keys (NeurIPS 2024, 2025), the four prior-year indicator sweeps, the nine-scout forecast research, and the three red-team critiques are versioned in the public repo.</li>
             <li>Pre-registration: research/preregistration.json, SHA-256 c0bad304…1b3f6, anchored to public commit 61320eb (2026-06-21).</li>
             <li>NeurIPS / ICLR / ICML official statistics, award announcements, and CFPs; papercopilot keyword data; the Stanford AI Index.</li>

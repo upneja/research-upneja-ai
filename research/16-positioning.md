@@ -1,0 +1,22 @@
+# Positioning & prior art (scout 5)
+_2026-06-21. The whitespace is real and confirmed by 4 of 5 independent streams: nobody has a properly-scored, TIME-RESOLVED benchmark grading natural-language forecasts of which ML trends will matter, against the field's own future verdict._
+
+## The sharpest framing
+Every existing way to judge AI research ability asks a human or an LLM what they think of an idea NOW. Anthropic's own taste metric (curated hindsight, 51→64%) and Si et al.'s own execution study (novelty advantage erased after building) both show that "now" judgment is unreliable. A time-resolved forecast benchmark replaces the judge with the future. **Human-judge benchmarks measure taste; this measures whether the taste was RIGHT, because time, not a reviewer, gets the final say.**
+
+## The 3 must-cite / differentiate-against
+1. **Si, Yang & Hashimoto 2024 (2409.04109) + the 2025 follow-up "Ideation-Execution Gap" (2506.20803).** THE foil. 2024: AI ideas judged MORE novel (5.64 vs 4.84) but ~5% non-duplicate + LLM-judge agreed w/ humans only 53.3%. 2025 SMOKING GUN: 43 researchers EXECUTED the ideas over 3mo → novelty advantage COMPLETELY REVERSED (AI 5.38→3.41 vs human 4.60→3.97, p<0.05 FDR). Proposal-time judgment does NOT predict realized quality.
+2. **The Krenn line: Science4Cast (Nature Mach Intel 2023; NeurIPS 2021 comp) → Impact4Cast (2402.08640) → FOS (2511.18631).** Nearest methodological ancestor; reviewers will say I duplicate it. DIFFERENTIATE: they do binary concept-LINK prediction scored by ROC-AUC (~0.75-0.80, unsaturated); I forecast trend MAGNITUDE, TIMING, PROMINENCE in NATURAL LANGUAGE, venue-and-time-resolved, under a strong naive baseline. (Also: hand-crafted features beat GNNs there.)
+3. **Proper-scoring stack + the delta warning.** Gneiting & Raftery 2007 (proper scoring rules; "maximize sharpness s.t. calibration"); Brier 1950 + Murphy 1973 decomposition; Metaculus scoring (Baseline score vs chance = score a lone model in isolation; Peer score vs field = head-to-head); RPS (Epstein 1969) for ordinal/tiered prominence; ForecastBench (2409.19839) for leakage control. **Ofer & Linial 2023 (2305.04133): predicting a topic's LEVEL is trivial (naive-lag R²=0.973), predicting CHANGE collapses (R²=0.004→0.447) — "score the delta not the level."** This VALIDATES the beyond-baseline metric (we already score the delta, not the level).
+
+## Has anyone pre-registered ML-trend forecasts and scored them?
+PARTIAL. Concept-links/growth: yes but non-LLM, link/count-shaped (Krenn line, AUGUR JCDL2018). LLM forecasts of which ML topics dominate: ESSENTIALLY NO (HindSight 2603.15164 is the lone nascent exception, scores idea→citation impact not topic dominance, finds LLM-novelty NEGATIVELY correlated w/ realized impact ρ≈−0.29). Scattered Metaculus one-offs ("Amazon papers at NeurIPS 2023"); Steinhardt/Hypermind ML-SOTA contest (pros massively UNDERSHOT — MATH hit 50.3% in 2022, a level their median put at 2025). Replication Markets/SCORE: markets barely beat trivial heuristics; all automated/AI methods LOST to human crowds.
+
+## The taste claim — VERIFIED with 2 mandatory corrections
+Source: Anthropic Institute, "When AI builds itself," Favaro & Clark, May 2026 (anthropic.com/institute/recursive-self-improvement).
+- NOT "50-60%". It's **51% (Opus 4.5, Nov 2025) → 64% (Mythos Preview, Apr 2026)**, n=129.
+- It is **explicitly NOT like-for-like**: Anthropic hand-picked 129 moments where the researcher had ALREADY taken a wrong turn, and an LLM-with-hindsight judged. Defensible claim: "on a curated set of hard junctures where the researcher had detoured, the model picked the better next step 64% of the time, up from 51% in 5 months." NOT "AI out-tastes scientists."
+- "Research taste is measurable" is now a real literature: TastyBench (LessWrong Dec 2025, taste = citation-velocity prediction, finds LLMs LACK superhuman taste); "AI Can Learn Scientific Taste" (2603.14473).
+
+## Key sources
+Si 2409.04109 + 2506.20803; Science4Cast nature.com/articles/s42256-023-00735-0 + Impact4Cast 2402.08640; Gneiting&Raftery 2007 (sites.stat.washington.edu/raftery); Metaculus metaculus.com/help/scores-faq; Ofer&Linial 2305.04133; ForecastBench 2409.19839; Anthropic taste anthropic.com/institute/recursive-self-improvement; TastyBench lesswrong.com/posts/Mxsy7wYvsCRv5dGrw. Caveat: some 2026 arXiv IDs (HindSight, 2603.14473, FOS) read via fast-fetch summarizer = lower confidence; Si et al. + Anthropic numbers verbatim-verified.
