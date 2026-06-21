@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { predictions, watchlist, type Prediction } from "../../lib/predictions";
+import { beyondBaseline } from "../../lib/backtest";
 import FrontierPlot from "./frontier-plot";
 
 const NAVY = "#1b3a5b";
@@ -46,6 +47,11 @@ function Card({ p }: { p: Prediction }) {
                 style={{ background: "#1b3a5b0f", color: NAVY }}>{p.lane}</span>
               <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full"
                 style={{ border: `1px solid ${col}`, color: col }}>{p.novelty}</span>
+              {beyondBaseline[p.id] === "beyond" && (
+                <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full"
+                  title="A call a naive extrapolator would have missed. The ones that actually test foresight."
+                  style={{ background: "#7c2d1212", color: "#7c2d12" }}>beyond baseline</span>
+              )}
             </div>
             <h3 className="font-display text-xl sm:text-2xl leading-snug" style={{ color: "var(--ink)" }}>
               {p.title}
