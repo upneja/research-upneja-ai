@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Design tokens get finalized during the build phase (frontend-design pass).
+   Minimal neutral base for now so the app compiles and runs. */
+:root {
+  --bg: #0a0a0b;
+  --fg: #ededed;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
