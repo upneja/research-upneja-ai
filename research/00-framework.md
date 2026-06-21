@@ -5,7 +5,7 @@
 
 ## Objective
 
-Predict **10 novel, high-probability concepts** that will be prominent at **NeurIPS 2026** (San Diego, December 2026), grounded in rigorous empirical analysis of 2026 cutting-edge ML research. Ship two artifacts to `neurips.upneja.ai`:
+Predict **10 novel, high-probability concepts** that will be prominent at **NeurIPS 2026** (Sydney, Australia, Dec 6–12, 2026 — corrected from an initial "San Diego" assumption via scouts 3 & 9), grounded in rigorous empirical analysis of 2026 cutting-edge ML research. Ship two artifacts to `neurips.upneja.ai`:
 
 1. A beautiful, interactive **data layer** illustrating the current and historical ML research landscape.
 2. The **10 predictions**, each with empirical evidence, a confidence level, and a falsifiable success criterion.
@@ -16,7 +16,7 @@ NeurIPS runs on a fixed clock:
 
 - Abstract deadline mid-May 2026, full-paper deadline ~5 days later. *(verify exact dates)*
 - Reviews June–August 2026; author rebuttals ~August; decisions ~mid-September 2026.
-- Conference early-to-mid December 2026. *(verify city/dates)*
+- Conference **Sydney, Australia, Dec 6–12, 2026** (verified via neurips.cc/Conferences/2026). Workshop slate not public until ~Sep 29 2026 (apps closed Jun 6), so workshop-based success criteria are standing-series extrapolations.
 
 **Implication:** as of today (2026-06-21) the papers that will define NeurIPS 2026 are *already written and largely on arXiv*. We are not predicting unknown future research. We are forecasting **which already-visible directions earn prominence** — measured as (a) a meaningful cluster of accepted papers, and/or (b) spotlight/oral/award/keynote/invited-talk/workshop framing.
 
@@ -68,3 +68,9 @@ _(pre-mortem on each prediction)_
 
 ## Data-layer datasets
 _(curated, sourced numbers for the viz)_
+
+## Paper-radar (publishable angles)
+Standing rule: flag publishable arXiv angles on research-shaped work (hub: papers.upneja.ai).
+- **Angle A — pre-registered forecast as meta-science.** This project is a timestamped, falsifiable, criterion-based forecast of NeurIPS 2026 trends made before decisions (Sep 2026). Publishing the predictions now as a dated preprint = pre-registration; a resolution paper post-conference scores the hit rate. Novel framing: "Can the frontier be forecast from leading indicators (ICLR/ICML/arXiv velocity)?" **Venue:** ML-evaluation / meta-science / Science-of-DL workshop, or arXiv cs.DL. **Gate:** needs a baseline (naive "extrapolate last year" forecaster) to beat, and the predictions must actually resolve well — credibility = track record.
+- **Angle B — the data layer as a dataset/measurement.** A cleaned, sourced longitudinal dataset of ML-venue topic prevalence + submission growth could be a Datasets/Evaluations-track artifact if it adds a method (e.g., automated topic-trend extraction with validity checks). **Gate:** must exceed existing trackers (papercopilot, AI Index) with a novel measurement, not just re-plot public numbers.
+- Re-evaluate after synthesis; only pursue if an angle clears its gate.
