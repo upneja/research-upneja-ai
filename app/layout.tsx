@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NeurIPS 2026 Forecast — the ML frontier, before it arrives",
+  title: "Forecasting the research frontier · a pre-registered NeurIPS 2026 experiment",
   description:
-    "A data-grounded forecast of the novel concepts that will define NeurIPS 2026, with an interactive map of the ML research landscape.",
+    "In June 2026 a frontier model (Opus 4.8) predicted ten novel concepts that will be prominent at NeurIPS 2026, each with a falsifiable December test. A pre-registered test of machine research foresight, with an interactive map of the ML research landscape.",
 };
 
 export default function RootLayout({

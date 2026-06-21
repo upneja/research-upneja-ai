@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Landscape from "./components/landscape";
 import Predictions from "./components/predictions";
 import { method, honesty } from "../lib/predictions";
@@ -17,16 +18,18 @@ export default function Home() {
   return (
     <main className="px-5 sm:px-8">
       {/* hero */}
-      <header className="max-w-6xl mx-auto pt-20 sm:pt-28 pb-14">
-        <p className="eyebrow">neurips.upneja.ai · a pre-registered forecast · June 2026</p>
-        <h1 className="font-display mt-5 leading-[1.02] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(40px, 8vw, 88px)", color: "var(--ink)" }}>
-          The ML frontier,<br />before it arrives.
+      <header className="max-w-6xl mx-auto pt-20 sm:pt-28 pb-10">
+        <p className="eyebrow">research.upneja.ai · a pre-registered experiment · sealed June 2026</p>
+        <h1 className="font-display mt-5 leading-[1.03] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(38px, 7.5vw, 82px)", color: "var(--ink)" }}>
+          Can a model forecast<br />the research frontier?
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: "#555b66" }}>
-          Ten concepts that will define <strong style={{ color: "var(--ink)" }}>NeurIPS 2026</strong> — predicted now,
-          while the papers sit under review. Each is novel yet high-probability, read off the research momentum
-          already visible on arXiv, ICLR 2026, and ICML 2026, and each carries a December test it can fail.
+          In June 2026, while the NeurIPS papers sat under review, a frontier model (Opus 4.8) wrote down ten
+          concepts it expects to be prominent at the December conference. Each is novel relative to 2024 and 2025,
+          read off public signals already visible on arXiv, ICLR 2026, and ICML 2026, and each carries a test it
+          can fail. In December the program goes public and the set is scored against a naive “extrapolate last
+          year” baseline.
         </p>
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs" style={{ color: "#8a8f99" }}>
           <span>◆ {neurips2026.location}</span>
@@ -40,15 +43,52 @@ export default function Home() {
             style={{ background: "#1b3a5b", color: "#fff" }}>The ten predictions ↓</a>
           <a href="#landscape" className="font-label font-bold text-sm px-5 py-2.5 rounded-full"
             style={{ border: "1px solid #d4cdba", color: "var(--ink)" }}>See the data first</a>
+          <Link href="/paper" className="font-label font-bold text-sm px-5 py-2.5 rounded-full"
+            style={{ border: "1px solid #d4cdba", color: "var(--ink)" }}>Read the paper →</Link>
         </div>
       </header>
+
+      {/* the experiment framing */}
+      <section className="max-w-6xl mx-auto pb-14">
+        <div className="rounded-2xl p-6 sm:p-8" style={{ background: "var(--panel)", border: "1px solid var(--line)" }}>
+          <div className="eyebrow mb-4">What this is, and is not</div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h3 className="font-label font-extrabold text-base" style={{ color: "var(--ink)" }}>A test of foresight, not invention</h3>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "#555b66" }}>
+                The model did not invent these concepts. It read the field and bet on which fresh directions
+                will matter, before the answer was public. That is research judgment, and it is scoreable.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-label font-extrabold text-base" style={{ color: "var(--ink)" }}>Falsifiable in December</h3>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "#555b66" }}>
+                Every prediction has a December 2026 criterion checkable against the public program: accepted
+                titles, orals, awards, the workshop slate. Hit or miss, then scored against a naive baseline.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-label font-extrabold text-base" style={{ color: "var(--ink)" }}>No self-grading</h3>
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "#555b66" }}>
+                Opus 4.8 is being measured on an Opus 4.8 forecast, so the score is the objective program in
+                December, not a rating the model gives itself. The method and the receipt live in the paper.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6">
+            <Link href="/paper" className="font-mono text-xs" style={{ color: "#7c2d12" }}>
+              read the full method and pre-registration in the paper →
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* landscape / data layer */}
       <section id="landscape" className="max-w-6xl mx-auto py-14 scroll-mt-8">
         <div className="mb-8">
           <SectionHead n="I" kicker="the data layer"
             title="The landscape, as the evidence shows it"
-            dek="Before any prediction: what the field actually looks like now, and where it is accelerating. Momentum is read as share, not raw count, because the submission pipeline roughly doubled in two years." />
+            dek="Before any prediction, what the field actually looks like now, and where it is accelerating. Momentum is read as share, not raw count, because the submission pipeline roughly doubled in two years." />
         </div>
         <Landscape />
       </section>
@@ -58,7 +98,7 @@ export default function Home() {
         <div className="mb-8">
           <SectionHead n="II" kicker="the forecast"
             title="Ten predictions for NeurIPS 2026"
-            dek="Each names a specific, fresh concept — not a 2025 truism — already cresting on hard leading indicators: the NeurIPS track rename, ICLR/ICML 2026 orals, AlphaProof's Erdős results, and a constant-method keyword scan." />
+            dek="Each names a specific, fresh concept, not a 2025 truism, already cresting on hard leading indicators: the NeurIPS track rename, ICLR/ICML 2026 orals, AlphaProof's Erdős results, and a constant-method keyword scan." />
         </div>
         <Predictions />
       </section>
@@ -68,7 +108,7 @@ export default function Home() {
         <div className="mb-8">
           <SectionHead n="III" kicker="how this was built"
             title="Method, and the honesty rules"
-            dek="A forecast is only as good as the discipline behind it. Confidence is cross-validation times a hard leading indicator; every number traces to a source; nothing rests on a rumor." />
+            dek="A forecast is only as good as the discipline behind it. Confidence is cross-validation times a hard leading indicator, every number traces to a source, and nothing rests on a rumor." />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {method.map((m) => (
@@ -92,15 +132,15 @@ export default function Home() {
 
       {/* footer */}
       <footer className="max-w-4xl mx-auto py-16 rule" style={{ borderTop: "1px solid var(--line)" }}>
-        <p className="font-display text-xl" style={{ color: "var(--ink)" }}>A pre-registration, not a hot take.</p>
+        <p className="font-display text-xl" style={{ color: "var(--ink)" }}>This forecast is dated and falsifiable.</p>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed" style={{ color: "#555b66" }}>
-          This page is timestamped and criterion-based. After the program is public in December 2026, each prediction
-          resolves hit or miss against its own falsifiable test, and the set is scored against a naive
-          “extrapolate last year” baseline. Built from a 9-scout research sweep of arXiv, ICLR 2026, ICML 2026, and
-          CVPR 2026, then hardened by three adversarial critics.
+          Each prediction resolves hit or miss against its own December 2026 test, and the set is scored against a
+          naive extrapolate-last-year baseline. Built from a nine-scout research sweep of arXiv, ICLR 2026, ICML
+          2026, and CVPR 2026, then hardened by three adversarial critics that caught a factual error and a missing
+          theme before the ten were locked.
         </p>
         <p className="mt-6 font-mono text-xs" style={{ color: "#8a8f99" }}>
-          neurips.upneja.ai · forecast dated June 2026 · resolves December 2026
+          research.upneja.ai · sealed June 2026 · resolves December 2026 · forecast by Opus 4.8
         </p>
       </footer>
     </main>
