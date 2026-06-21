@@ -58,7 +58,7 @@ export default function Home() {
         <div className="mb-8">
           <SectionHead n="II" kicker="the forecast"
             title="Ten predictions for NeurIPS 2026"
-            dek="Each names a specific, fresh concept — not a 2025 truism — already cresting on hard leading indicators: track renames, ICLR/ICML orals, a CVPR best paper, AlphaProof's Erdős results, and a constant-method keyword scan." />
+            dek="Each names a specific, fresh concept — not a 2025 truism — already cresting on hard leading indicators: the NeurIPS track rename, ICLR/ICML 2026 orals, AlphaProof's Erdős results, and a constant-method keyword scan." />
         </div>
         <Predictions />
       </section>
@@ -97,7 +97,7 @@ export default function Home() {
           This page is timestamped and criterion-based. After the program is public in December 2026, each prediction
           resolves hit or miss against its own falsifiable test, and the set is scored against a naive
           “extrapolate last year” baseline. Built from a 9-scout research sweep of arXiv, ICLR 2026, ICML 2026, and
-          CVPR 2026, refined by an adversarial novelty pass.
+          CVPR 2026, then hardened by three adversarial critics.
         </p>
         <p className="mt-6 font-mono text-xs" style={{ color: "#8a8f99" }}>
           neurips.upneja.ai · forecast dated June 2026 · resolves December 2026
