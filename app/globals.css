@@ -1,15 +1,65 @@
 @import "tailwindcss";
 
-/* Design tokens get finalized during the build phase (frontend-design pass).
-   Minimal neutral base for now so the app compiles and runs. */
+/* ---------------------------------------------------------------------------
+   neurips.upneja.ai — "scientific broadsheet" light system.
+   Fraunces (display) / Cabinet Grotesk (labels) / Satoshi (body) /
+   JetBrains Mono (data). Warm paper, deep ink, navy + oxblood accents.
+   --------------------------------------------------------------------------- */
 :root {
-  --bg: #0a0a0b;
-  --fg: #ededed;
+  --bg: #f4f1e9;
+  --panel: #fffdf8;
+  --panel2: #faf7ef;
+  --ink: #15171c;
+  --ink2: #555b66;
+  --ink3: #8a8f99;
+  --line: #e3ddcf;
+  --line2: #d4cdba;
+  --navy: #1b3a5b;
+  --oxblood: #7c2d12;
+  --green: #1f7a4d;
+  --amber: #9a6b14;
+  --rust: #a8521f;
 }
 
-html,
-body {
+html, body {
   background: var(--bg);
-  color: var(--fg);
+  color: var(--ink);
+  font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+.font-display { font-family: "Fraunces", Georgia, serif; }
+.font-label { font-family: "Cabinet Grotesk", ui-sans-serif, sans-serif; }
+.font-mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+::selection { background: #1b3a5b22; }
+
+/* subtle paper depth via layered gradients, GPU-cheap */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #ffffff66, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #1b3a5b0a, transparent 55%);
+  z-index: 0;
+}
+#app { position: relative; z-index: 1; }
+
+a { color: var(--navy); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
