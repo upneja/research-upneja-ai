@@ -69,8 +69,7 @@ export default function FrontierPlot() {
             return (
               <motion.g key={p.id}
                 initial={reduce ? false : { opacity: 0, scale: 0.4 }}
-                whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                animate={reduce ? undefined : { opacity: 1, scale: 1 }}
                 transition={{ delay: reduce ? 0 : 0.04 * i, type: "spring", stiffness: 220, damping: 18 }}
                 style={{ cursor: "pointer", transformOrigin: `${cx}px ${cy}px` }}
                 onMouseEnter={() => setHover(p.id)} onMouseLeave={() => setHover(null)} onClick={() => go(p.id)}>
