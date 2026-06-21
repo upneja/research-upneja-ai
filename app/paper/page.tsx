@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { predictions, watchlist, meta } from "../../lib/predictions";
+import { predictions, meta } from "../../lib/predictions";
+import { backtest } from "../../lib/backtest";
 
 export const metadata: Metadata = {
-  title: "Forecasting the Research Frontier — a pre-registered test of machine research foresight",
+  title: "Forecasting the Research Frontier — a benchmark for AI research foresight, judged by time",
   description:
-    "A frontier model (Opus 4.8) forecast ten novel concepts for NeurIPS 2026 in June 2026, pre-registered and falsifiable, scored in December against a naive baseline. Method, predictions, and scoring rule.",
+    "A frontier model pre-registers ten falsifiable NeurIPS 2026 predictions, backtested on the two NeurIPS years that already resolved, scored against a naive baseline. Method, backtest, predictions, and scoring rule.",
 };
 
 function H({ n, children }: { n: string; children: React.ReactNode }) {
@@ -25,108 +26,117 @@ export default function Paper() {
   return (
     <main className="px-5 sm:px-8">
       <article className="max-w-[680px] mx-auto pt-16 sm:pt-24 pb-24">
-        {/* masthead */}
         <Link href="/" className="font-mono text-xs" style={{ color: "#7c2d12" }}>← research.upneja.ai</Link>
         <p className="eyebrow mt-8">Working paper · pre-registration · {meta.sealed}</p>
         <h1 className="font-display mt-4 leading-[1.08] tracking-[-0.01em]" style={{ fontSize: "clamp(34px, 6vw, 56px)", color: "var(--ink)" }}>
           Forecasting the research frontier
         </h1>
         <p className="font-display mt-2" style={{ fontSize: 22, color: "#555b66", fontStyle: "italic" }}>
-          a pre-registered test of machine research foresight
+          a benchmark for AI research foresight, judged by time
         </p>
         <p className="mt-6 font-mono text-xs leading-relaxed" style={{ color: "#8a8f99" }}>
           forecaster: Claude Opus 4.8, with a 9-scout, 3-critic research process · sealed {meta.sealed} · resolves at {meta.resolves}
         </p>
 
-        {/* abstract */}
         <div className="mt-10 rounded-2xl p-6 sm:p-7" style={{ background: "var(--panel)", border: "1px solid var(--line)" }}>
           <div className="eyebrow mb-3">Abstract</div>
           <p className="leading-[1.7]" style={{ fontSize: 15.5, color: "#2c313a" }}>
             There is an open debate about whether large language models can do anything genuinely novel, or only
-            recombine what they have seen. Most attempts to settle it rely on human judges rating the novelty of
-            model-generated ideas, which is subjective and easy to contest. We take a different route. In June 2026,
-            with the NeurIPS 2026 papers submitted but under review and the program not yet public, a frontier model
-            (Opus 4.8) used a multi-agent research process to forecast ten concepts that will be prominent at the
-            December conference. The forecast is pre-registered: each prediction names a concept that is fresh
-            relative to 2024 and 2025, rests on public leading indicators, and carries a falsifiable December
-            criterion. When the program becomes public, the forecast is scored, hit or miss, against a naive baseline
-            that extrapolates last year&apos;s themes. This measures research foresight, the ability to read a field
-            and bet on which new directions will matter, under an objective future ground truth. We describe the
-            method, state the ten predictions and their tests, and fix the scoring rule in advance.
+            recombine what they have seen. Most attempts to settle it ask human judges whether model-generated ideas
+            feel new, which is subjective and easy to contest. We use a future event as the answer key instead. In
+            June 2026, with the NeurIPS 2026 papers submitted but the program not yet public, a frontier model used a
+            multi-agent research process to forecast ten concepts that will be prominent at the December conference,
+            each fresh relative to 2024 and 2025, each carrying a falsifiable December criterion, and froze them in a
+            hashed, timestamped record. We first test the method on the two NeurIPS years that have already resolved.
+            That backtest, built so the outcomes and the prior-year signals are gathered by separate blind passes,
+            shows a naive extrapolator already lands most of the headline themes (7 of 11 in 2024, 6 of 11 in 2025).
+            That sets a high bar and reframes the task: a model demonstrates research taste only on the fresh,
+            specific calls the baseline misses. We describe the method, report the backtest and its two lessons, state
+            the ten predictions and their tests, and fix the scoring rule in advance.
           </p>
         </div>
 
         <H n="1">The question, stated honestly</H>
         <P>
-          The recurring argument online is that a language model cannot be novel. It interpolates. It returns the
-          average of its training data dressed up in fluent prose. The counter-argument is that this is also a fair
-          description of most human research, and that the line between recombination and invention is thinner than
-          anyone admits. The debate stalls because the usual way to resolve it is to ask people whether a
-          model&apos;s ideas feel novel, and people disagree.
+          The recurring argument online is that a language model cannot be novel. It interpolates. The counter is
+          that this also describes most human research, and the line between recombination and invention is thinner
+          than anyone admits. The debate stalls because the usual way to resolve it is to ask people whether a
+          model&apos;s ideas feel novel, and people disagree. The closest prior work, Si, Yang, and Hashimoto&apos;s
+          large human study (2024), found reviewers rated machine ideas more novel than expert ideas but less
+          feasible. It is careful work, and it still inherits the core weakness: novelty was a subjective rating,
+          with no ground truth about whether the ideas were any good.
         </P>
         <P>
-          The closest prior work, Si, Yang, and Hashimoto&apos;s large human study of LLM-generated research ideas
-          (2024), found that reviewers rated machine ideas as more novel than expert ideas but less feasible. It is
-          a careful study, and it still inherits the core weakness: novelty was a subjective rating, with no ground
-          truth about whether the ideas were actually any good. We wanted a test with an answer key.
-        </P>
-        <P>
-          So we are precise about what is being measured. This is not a test of invention from nothing. The model
-          did not conjure these concepts out of the air; it read the field. What it did is harder to fake: from
-          signals available to everyone, it picked which fresh, not-yet-obvious directions will matter, and it
-          committed to that bet before the answer was public. Call it research foresight. Foresight is scoreable in
-          a way that felt-novelty is not, because the future arrives and settles it.
+          We wanted a test with an answer key, so we borrow from a different tradition: forecasting science. The
+          IARPA forecasting tournaments and platforms like Metaculus do not ask whether a prediction feels smart;
+          they wait for the event and score it with proper scoring rules. We do the same to a model&apos;s sense of
+          the research frontier. And we are precise about what is measured. This is not invention from nothing. The
+          model did not conjure these concepts; it read the field and bet on which fresh directions will matter,
+          before the answer was public. Call it research foresight. Foresight is scoreable in a way felt-novelty is
+          not, because the future arrives and settles it.
         </P>
 
         <H n="2">Why mid-2026 is the right moment</H>
         <P>
-          NeurIPS runs on a fixed clock. The 2026 papers were due in early May, they are under review through the
-          summer, and decisions land in late September, with the conference in December. That timing is what makes
-          the forecast tractable rather than mystical. As of June, the work that will define NeurIPS 2026 is already
-          written and largely on arXiv. We are not predicting unknown research. We are predicting which of the
-          directions already visible in the open literature will earn prominence: a cluster of accepted papers, an
-          oral, an award, a workshop.
-        </P>
-        <P>
-          That also sharpens the novelty claim. The two conferences immediately upstream, ICLR 2026 and ICML 2026,
-          have already happened, and their accepted papers are the strongest single proxy for what the same
-          submission cohort will produce at NeurIPS. A good forecast reads those leading indicators and separates a
-          genuine, fresh surge from a topic that merely looks busy because the whole field grew. The pipeline
-          roughly doubled in two years, so raw paper counts rose for almost everything; the discipline is to read
-          share, not volume.
+          NeurIPS runs on a fixed clock. The 2026 papers were due in early May, are under review through the summer,
+          and decisions land in late September, with the conference in December. As of June, the work that will
+          define NeurIPS 2026 is already written and largely on arXiv. We are not predicting unknown research; we are
+          predicting which of the directions already visible in the open literature earn prominence: a cluster of
+          accepted papers, an oral, an award, a workshop. The two conferences immediately upstream, ICLR 2026 and
+          ICML 2026, share the submission cohort and are the strongest proxy. The discipline is to read share, not
+          volume, because the pipeline roughly doubled in two years and raw counts rose for almost everything.
         </P>
 
         <H n="3">Method</H>
         <P>
-          The forecast came out of a process designed to be reproducible and adversarial, not a single prompt. Nine
-          research agents searched the open literature in parallel, each covering one subfield and each restricted
-          to public sources from the months after the model&apos;s own training cutoff, so the recent frontier had
-          to be found by search rather than recalled. Their findings were synthesized into a candidate pool, then
-          attacked by three independent critics with separate jobs: one for novelty, one for the strength of the
-          evidence, one for whether each criterion was actually checkable.
-        </P>
-        <P>
-          The critics earned their place. They caught a factual error, a CVPR best paper that an early draft had
-          misattributed as a world-model result when it was a reconstruction method, and the claim was removed. They
-          caught a missing theme, multimodal generation, which is the steepest-rising area in the field and had been
-          left off the list entirely; it was added. And they caught a systematic over-confidence, the natural drift
-          of a model rolling sub-claims up into a headline, and the numbers were pulled back. A forecast that
-          survives being attacked by its own author is worth more than one that was never tested.
-        </P>
-        <P>
-          Four rules held throughout. Confidence is cross-validation times a hard indicator: a concept independently
-          surfaced by several agents and backed by an award, an oral, or an official program change scores higher
-          than one resting on a single preprint. Momentum is read as share, not count. No prediction is allowed to
-          depend on an unverifiable model name or a fast-moving preprint nobody opened; the load-bearing anchors are
-          the NeurIPS program changes, the ICLR and ICML accepted-paper records, and a constant-method keyword scan.
-          And every prediction must carry a December test it can fail.
+          The forecast came out of a process built to be reproducible and adversarial, not a single prompt. Nine
+          research agents searched the open literature in parallel, each covering one subfield and each restricted to
+          public sources after the model&apos;s own training cutoff, so the recent frontier had to be found by search
+          rather than recalled. Their findings were synthesized into a candidate pool, then attacked by three
+          independent critics with separate jobs: novelty, evidence strength, and whether each criterion was actually
+          checkable. The critics earned their place: they caught a misattributed award, a missing theme (multimodal,
+          the steepest riser), and a systematic over-confidence, all corrected before the ten were locked. The record
+          is then frozen: the predictions live in a public artifact, fingerprinted with a SHA-256 hash, anchored to a
+          git commit timestamped months before the program is decided. Editing a prediction changes the hash and
+          breaks the pre-registration. Anyone can check it.
         </P>
 
-        <H n="4">The pre-registered forecast</H>
+        <H n="4">The backtest: does the method work?</H>
         <P>
-          Below are the ten, with their stated confidence and the one-line version of each December test. The full
-          cards, with the evidence behind each, are on the <Link href="/" style={{ color: "#7c2d12" }}>forecast page</Link>.
-          This list is the pre-registration: it is dated, and it does not change after today.
+          A method you cannot check is a horoscope. Before asking anyone to trust a 2026 call, we test it on the two
+          NeurIPS years that already resolved. The design guards against the obvious trap, that we already know how
+          those years turned out. The outcomes (what actually defined NeurIPS {backtest[0].year} and {backtest[1].year})
+          and the prior-year signals (what was surging at the preceding ICLR, ICML, and on arXiv) were gathered by
+          separate agents, each blind to the other. We never construct a retroactive &ldquo;the model would have
+          predicted X.&rdquo; We only ask: did the prior signal contain the answer, and how much of it would a
+          mechanical extrapolator have caught?
+        </P>
+        <P>
+          The result is two-sided and, we think, the most useful part of the project. First, the method has signal:
+          on both years, most of what ended up defining NeurIPS was already surging in the prior ICLR, ICML, and
+          arXiv data. Second, and more important, the naive baseline is strong. A mechanical extrapolator that simply
+          predicts last year&apos;s top share-risers repeat lands {backtest[0].baselineHit} of 11 defining themes in {backtest[0].year}
+          and {backtest[1].baselineHit} of 11 in {backtest[1].year}. The big, obvious themes are visible a year out,
+          so a model predicting &ldquo;agents and reasoning and multimodal will be big&rdquo; proves nothing. The bar
+          is high, and a forecast earns its keep only on the calls the baseline misses.
+        </P>
+        <P>
+          The misses teach the two lessons that shaped the live method. One: late shocks are unforecastable a year
+          out. Inference-time compute was the defining narrative of NeurIPS 2024, and it was invisible to the prior
+          signal because o1 shipped in September, after the indicators. No year-out method catches a paradigm shock
+          that lands between the signal and the conference, and the 2026 forecast should expect to miss its own. Two:
+          weight arXiv and lab momentum over lagged conference keywords. RLVR and GRPO dominated arXiv through 2025
+          but read near-zero in conference author-keywords, because DeepSeek-R1 post-dated camera-ready deadlines. A
+          method that extrapolates keywords misses this; one that weights arXiv and lab releases catches it. The 2026
+          method does the latter. The honest division of labor: the backtest validates the method and sets the bar;
+          the live forecast tests the skill against it.
+        </P>
+
+        <H n="5">The pre-registered forecast</H>
+        <P>
+          Below are the ten, with their confidence and the one-line December test. The full cards and the evidence
+          are on the <Link href="/" style={{ color: "#7c2d12" }}>forecast page</Link>. This list is the
+          pre-registration: dated, hashed, and unchanged after today.
         </P>
         <ol className="mt-6 space-y-4">
           {predictions.map((p) => (
@@ -141,64 +151,61 @@ export default function Paper() {
             </li>
           ))}
         </ol>
-        <P>
-          Six more concepts sit on a watchlist, strong enough to track but cut from the ten for novelty, venue
-          routing, or overlap. Two of them ({watchlist[0].title.split(" &")[0]} and the science of peer review)
-          carry higher raw probability than the boldest of the ten; they lost their slots on grounds other than
-          strength, which is itself part of the record.
-        </P>
 
-        <H n="5">How it gets scored</H>
+        <H n="6">How it gets scored</H>
         <P>
           In December, when the program is public, each prediction is checked against its own criterion using the
-          accepted-paper titles and abstracts, the list of orals and spotlights, the awards, and the workshop slate.
-          Each resolves hit or miss. There is no partial credit and no moving the line; the criteria were written to
-          be checkable by anyone with the public program in hand.
-        </P>
-        <P>
-          One number alone would not be convincing, so the forecast is scored two ways. First, hit rate against a
-          naive baseline: a forecaster that simply predicts the most prominent themes of NeurIPS 2025 will repeat.
-          If reading this year&apos;s leading indicators does no better than echoing last year, the forecast has
-          shown nothing. Second, calibration: the confidences should track the hit rate, so that the things marked
-          85 percent come true more often than the things marked 65. With only ten predictions, calibration is a
-          weak signal, which is a limitation we state rather than hide.
+          accepted-paper titles and abstracts, the orals and spotlights, the awards, and the workshop slate. Each
+          resolves hit or miss, with no partial credit and no moving the line. But the headline number is not
+          &ldquo;X of 10 hit.&rdquo; The backtest showed why: a naive extrapolator already gets the obvious themes,
+          so the measure of foresight is &ldquo;X of 10 hit, of which Y were beyond-baseline calls the extrapolator
+          would have missed.&rdquo; Y is the real score. The set is also checked for calibration, whether the
+          higher-confidence calls came true more often, though with ten predictions that signal is weak, which we
+          state rather than hide.
         </P>
 
-        <H n="6">Limitations</H>
+        <H n="7">Limitations</H>
         <P>
-          The honest list is short and real. This measures foresight, not invention, and a reader who wants proof
-          that a model can generate ideas nobody has had will not find it here; that is a different experiment, and
-          a natural next arm. The model is being measured on its own forecast, so the score has to be the objective
-          program, not anything the model says about itself; a fuller test would put other frontier models and human
-          forecasters on the identical task and compare. Ten predictions over one venue in one year is a small
-          sample. Some of the supporting evidence comes from fast-moving 2026 preprints, and while the load-bearing
-          anchors were restricted to verified sources, residual risk remains. And a concept can be real yet land at
-          ICLR, ICML, CVPR, or a systems venue instead of NeurIPS, which would score as a miss here even though the
-          underlying call was right.
+          The honest list is short. This measures foresight, not invention, and a reader who wants proof that a model
+          can generate ideas nobody has had will not find it here; that is a different experiment and a natural next
+          arm. The model is measured on its own forecast, so the score has to be the objective program, not anything
+          the model says about itself; a fuller test puts other frontier models and human forecasters on the
+          identical pre-registered task, which the leaderboard leaves open. Ten predictions over one venue in one
+          year is a small sample. The backtest shows the method will miss its own late shock. And some supporting
+          evidence comes from fast-moving 2026 preprints; the load-bearing anchors were restricted to verified
+          sources, but residual risk remains.
         </P>
 
-        <H n="7">What a result would mean</H>
+        <H n="8">What a result would mean</H>
         <P>
-          If the forecast hits well and beats the naive baseline, that is evidence of something specific and
-          modest: a model can read public signals and bet on which new research directions will matter better than
-          extrapolation does. Not invention, not genius, but real judgment, written down in advance and checked. If
-          it misses, that is also a result, and a more interesting one than a comfortable post-hoc story would have
-          been: it would say the model over-indexed on what looked busy in mid-2026, or that the frontier is simply
-          harder to call than it looks. Either way the value is in the pre-registration. The forecast is dated, the
-          rule is fixed, and December does the grading.
+          If the forecast beats the naive baseline on the beyond-baseline calls, that is evidence of something
+          specific and modest: a model can read public signals and bet on which new directions will matter better
+          than extrapolation does. Not invention, not genius, but real judgment, written down in advance and checked.
+          This is the empirical engine for a larger question we care about, the half-life of human research advantage:
+          as models absorb execution, the residual human contribution migrates to taste, the ability to tell good
+          from bad before the outcome is known, and taste is exactly what a time-resolved forecast measures. The
+          leaderboard is where that gets contested, with other models and human experts as the open arms. If the
+          forecast misses, that is also a result, and a more interesting one than a comfortable post-hoc story: it
+          would say the model over-indexed on what looked busy in mid-2026, or that the frontier is harder to call
+          than it looks. Either way the value is in the pre-registration. The forecast is dated, the rule is fixed,
+          and December does the grading.
         </P>
 
-        {/* references */}
         <div className="mt-16 pt-8" style={{ borderTop: "1px solid var(--line)" }}>
           <div className="eyebrow mb-4">References &amp; provenance</div>
           <ul className="space-y-2.5 font-mono text-xs leading-relaxed" style={{ color: "#555b66" }}>
             <li>Si, Yang, Hashimoto. <span style={{ color: "var(--ink)" }}>Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers.</span> arXiv:2409.04109, 2024.</li>
-            <li>NeurIPS 2026 Call for Papers and the Evaluations &amp; Datasets track. neurips.cc/Conferences/2026.</li>
-            <li>ICLR 2026 Outstanding Papers and review-process retrospective. blog.iclr.cc, 2026.</li>
-            <li>ICML 2026 accepted-paper statistics and agent-paper census. icml.cc, 2026.</li>
-            <li>Full nine-scout research journal, the candidate pool, and the three red-team critiques are versioned alongside this forecast.</li>
+            <li>Tetlock &amp; Gardner, <span style={{ color: "var(--ink)" }}>Superforecasting</span>; the IARPA ACE forecasting tournaments; Metaculus. The lineage for scoring forecasts with proper scoring rules and calibration.</li>
+            <li>The two backtest answer keys (NeurIPS 2024, 2025), the four prior-year indicator sweeps, the nine-scout forecast research, and the three red-team critiques are versioned in the public repo.</li>
+            <li>Pre-registration: research/preregistration.json, SHA-256 c0bad304…1b3f6, anchored to public commit 61320eb (2026-06-21).</li>
+            <li>NeurIPS / ICLR / ICML official statistics, award announcements, and CFPs; papercopilot keyword data; the Stanford AI Index.</li>
           </ul>
-          <p className="mt-8 font-mono text-xs" style={{ color: "#8a8f99" }}>
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-label font-bold text-sm">
+            <Link href="/" style={{ color: "var(--ink)" }}>The forecast →</Link>
+            <Link href="/resolution" style={{ color: "var(--ink)" }}>The December scorecard →</Link>
+            <a href="https://github.com/upneja/research-upneja-ai" style={{ color: "var(--ink)" }}>The repo →</a>
+          </div>
+          <p className="mt-6 font-mono text-xs" style={{ color: "#8a8f99" }}>
             research.upneja.ai · forecast by Claude Opus 4.8 · sealed {meta.sealed} · resolves December 2026
           </p>
         </div>
