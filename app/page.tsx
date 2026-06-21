@@ -139,7 +139,12 @@ export default function Home() {
           2026, and CVPR 2026, then hardened by three adversarial critics that caught a factual error and a missing
           theme before the ten were locked.
         </p>
-        <p className="mt-6 font-mono text-xs" style={{ color: "#8a8f99" }}>
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-label font-bold text-sm">
+          <Link href="/paper" style={{ color: "var(--ink)" }}>The paper →</Link>
+          <Link href="/resolution" style={{ color: "var(--ink)" }}>The December scorecard →</Link>
+          <a href="https://github.com/upneja/research-upneja-ai" style={{ color: "var(--ink)" }}>The repo →</a>
+        </div>
+        <p className="mt-5 font-mono text-xs" style={{ color: "#8a8f99" }}>
           research.upneja.ai · sealed June 2026 · resolves December 2026 · forecast by Opus 4.8
         </p>
       </footer>

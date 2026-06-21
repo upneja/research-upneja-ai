@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { predictions, watchlist, type Prediction } from "../../lib/predictions";
+import FrontierPlot from "./frontier-plot";
 
 const NAVY = "#1b3a5b";
 const INK2 = "#555b66";
@@ -30,7 +31,8 @@ function Card({ p }: { p: Prediction }) {
   const col = confColor(p.confidence);
   return (
     <article
-      className="rounded-2xl p-6 sm:p-7 transition"
+      id={p.id}
+      className="rounded-2xl p-6 sm:p-7 transition scroll-mt-6"
       style={{ background: "var(--panel)", border: "1px solid var(--line)" }}
     >
       <div className="flex items-start justify-between gap-4">
@@ -93,6 +95,7 @@ export default function Predictions() {
   );
   return (
     <div>
+      <FrontierPlot />
       <div className="flex items-center justify-between flex-wrap gap-3 mb-5">
         <p className="text-sm" style={{ color: INK2 }}>
           Ten forecasts. Each carries an explicit confidence and a December-2026 test it can fail.
