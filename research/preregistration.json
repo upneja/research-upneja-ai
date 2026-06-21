@@ -1,0 +1,28 @@
+{
+  "title": "Forecasting the Research Frontier — pre-registered NeurIPS 2026 predictions",
+  "forecaster": "Claude Opus 4.8",
+  "sealed": "2026-06-21",
+  "resolves": "NeurIPS 2026, Sydney, 2026-12-06/2026-12-12",
+  "method": "9 parallel research scouts over public Feb-Jun 2026 signals (arXiv, ICLR 2026, ICML 2026); synthesis; 3 adversarial critics; share-not-count discipline; every claim carries a falsifiable December criterion.",
+  "note": "This file is the immutable record of the forecast. Its SHA-256 is published on research.upneja.ai; the public git commit that first locked these ten (2026-06-21) is the timestamp. Editing any prediction below would change the hash and break the pre-registration.",
+  "predictions": [
+    { "rank": 1, "id": "eval-science", "confidence": 87, "title": "Evaluation becomes a science: sandbagging, eval-awareness, and benchmark auditing", "criterion": "The Evaluations & Datasets track ships, AND >=20 accepted papers' primary contribution is auditing existing benchmarks / contamination detection / eval-awareness / construct validity, AND >=1 gets a spotlight, oral, or award." },
+    { "rank": 2, "id": "rlvr-rubrics", "confidence": 85, "title": "RLVR escapes verifiable domains via rubric and generative verifiers; GRPO-successors become the default", "criterion": ">=80 accepted papers carry RLVR / GRPO / verifiable-reward (or a named successor) in title/abstract, AND >=5 center rubric/generative verifiers for non-verifiable domains, AND an RLVR/reasoning-RL paper wins an oral/award." },
+    { "rank": 3, "id": "agentic-rl-env", "confidence": 74, "title": "Agentic RL where the environment, not the algorithm, is the scarce asset", "criterion": ">=40 accepted papers train LLM agents end-to-end with RL in interactive environments, >=6 foreground long-horizon credit assignment, AND >=1 agentic-RL oral/spotlight or a dedicated workshop." },
+    { "rank": 4, "id": "world-models", "confidence": 72, "title": "World models as trainable simulators, with physics-faithfulness as the open problem", "criterion": "world model in >=50 accepted titles/abstracts with >=10 using it as a trainable simulator, AND >=1 spotlight/oral or a World Models workshop, AND >=3 papers on physics-faithfulness/controllability." },
+    { "rank": 5, "id": "unified-multimodal", "confidence": 82, "title": "Unified, reasoning-infused multimodal: one backbone that reasons, then renders", "criterion": "Multimodal/VLM is the largest single topic cluster among accepted papers, AND >=15 papers center unified understanding-and-generation or reasoning-infused image generation, AND >=1 spotlight/oral or dedicated workshop." },
+    { "rank": 6, "id": "diffusion-lm", "confidence": 71, "title": "Diffusion language models become a recognized alternative to autoregressive text", "criterion": ">=20 accepted main-proceedings papers on diffusion/masked-diffusion language models, AND (>=1 diffusion-LM oral/spotlight OR a dedicated workshop/tutorial)." },
+    { "rank": 7, "id": "hybrid-attention", "confidence": 74, "title": "Hybrid linear-attention beats pure SSM; attention is contested again", "criterion": ">=30 accepted papers on hybrid/linear-attention/sub-quadratic architectures, AND >=2 of {Mamba-3, Kimi Linear, Olmo Hybrid, Gated DeltaNet-2, Qwen3-Next} as named baselines, AND hybrids outnumber pure-SSM among new-backbone papers." },
+    { "rank": 8, "id": "interp-after-saes", "confidence": 77, "title": "Interpretability after SAEs: transcoders, circuit tracing, parameter decomposition", "criterion": ">=10 accepted papers center post-SAE interpretability (transcoders/CLTs/model-diffing/parameter-decomposition), SAE-replacement explicit in >=2, AND >=1 interpretability spotlight/oral or named mech-interp workshop." },
+    { "rank": 9, "id": "ai-for-math", "confidence": 65, "title": "AI for mathematics: autonomous theorem proving cracks open problems", "criterion": ">=1 newly machine-verified mathematics result presented as an oral/keynote/invited talk, OR an AI-for-math workshop runs, AND FrontierMath/Lean-prover benchmarks cited across >=15 accepted papers." },
+    { "rank": 10, "id": "ttt", "confidence": 70, "title": "Test-time training: updating weights during inference", "criterion": ">=12 accepted main-proceedings papers center test-time training/weight-adaptation/continual-at-inference for sequence models or LLMs (excluding classic vision TTA), AND >=1 spotlight/oral or a TTT-adjacent workshop." }
+  ],
+  "watchlist": [
+    { "id": "inference-scaling", "confidence": 76, "title": "Inference-aware scaling laws & the efficiency inversion" },
+    { "id": "peer-review-science", "confidence": 76, "title": "The science of peer review under AI load" },
+    { "id": "latent-reasoning", "confidence": 58, "title": "Latent / looped (recurrent-depth) reasoning" },
+    { "id": "fp4-training", "confidence": 68, "title": "Native FP4 training (NVFP4 / MXFP4)" },
+    { "id": "kv-compression", "confidence": 75, "title": "Reasoning-aware KV-cache compression" },
+    { "id": "agent-memory", "confidence": 68, "title": "Parametric / RL-learned agent memory (post-RAG)" }
+  ]
+}
