@@ -1,0 +1,20 @@
+# Red-team 2 & 3 — Probability/Evidence + Falsifiability/Gap (verdicts)
+_Filed 2026-06-21. Condensed; full outcomes folded into 12-final-predictions.md changelog._
+
+## Critic 2 — Probability & Evidence (spot-checked live)
+VERIFIED: NeurIPS 2026 ED-track rename ✅; AI-reviewing RCT ✅; Mamba-3 ICLR Oral ✅; "LLMs Get Lost in Multi-Turn" ICLR Outstanding Paper ✅; AgentGym-RL Oral ✅; ThinKV (W5) Oral ✅; World-In-World ICLR Oral + World Models workshop ✅; **"Claude Fable 5" is REAL** (Anthropic 2026-06-09 — so blanket "model names are SEO" caveat is over-broad).
+**FALSIFIED: CVPR 2026 Best Paper = "world-model paper" → FALSE. It's D4RT (4D scene RECONSTRUCTION).** P5's flagship ★★★ anchor is wrong.
+UNVERIFIED (papercopilot gated): exact GRPO 0→0→73 / RLVR 0→0→110 counts — directionally corroborated by verified orals, treat numbers as single-source.
+Recommended confidence moves >10pts: **P5 85→70** (falsified anchor + CVPR venue-routing); **P6-latent 73→58** (single-scout, 26XX-only, no hard anchor); **P2 84→73** (one-scout, workshop-routed, single-paper "scaling law"). Others: P1→88, P3→84, P4→75, P7-TTT→66, P8-diffusion→70, P9-hybrid→73, P10-peerreview→78.
+3 MOST LIKELY WRONG: P5 (false anchor), P6-latent (thin evidence), P4 (industry/MLSys routing).
+Systemic biases: (1) AGGREGATION INFLATION — synthesis rated picks HIGHER than the source scouts' own numbers (scout 05: 68–80%; scout 09: 75%); rolling sub-claims up should LOWER conf (conjunctions). (2) ECHO ≠ INDEPENDENCE — "cross-validated by ≥2 scouts" often = same blog/arXiv re-cited. (3) Over-trust of 26XX IDs never discharged. Verified anchors concentrate in P1/P3/P9/P10.
+
+## Critic 3 — Falsifiability, Calibration & Gap
+**PROGRAM-SIZE DENOMINATOR (biggest risk):** NeurIPS 2026 ≈ **7,000–7,500 accepts** (2024 15,671sub/4,037acc → 2025 21,575/5,290; +38% YoY; ICML 2026 already 6,352). Synthesis assumed ~5–6k → every raw-count bar too LOW (≥6 of 7,000 = 0.09% = noise). FIX: reframe as SHARE/RANK/RECOGNITION (the method promised this; the criteria didn't deliver). Counts → main archival proceedings only (workshops non-archival, slate unknown until Sep 29).
+**THE ONE INDEFENSIBLE GAP: multimodal/VLM** — unanimous steepest riser (16%→28%→40% share), absent from 10 AND watchlist. Belongs in the 10 as "unified/reasoning-infused multimodal" (name the novel slice, as we did for diffusion-LMs). **Displaces P6-latent.**
+Other gaps: AI-for-math (best optional promotion, prestige bet, IMO-2026 tailwind — promote w/ recognition-criterion); efficiency/overthinking (scout 01's highest 82%, NeurIPS-2025 workshop 1,000+ attendees — mis-filed on watchlist, split from scaling-laws); FP4 (watchlist CORRECT — MLSys routing); KV-cache (watchlist CORRECT — too narrow); agent-memory (watchlist — overlaps P4/P7).
+Criterion fixes applied: P1 6→20; P3 40→80; P4 10→40 (ICML had 465 agent papers!); P5 DECOUPLE VLA (category error) + operationalize physics phrase (≥3 papers); P7-TTT drop "+workshops" + disambiguate from vision-TTA; P8-diffusion 25→20 + OR the oral; P9 operationalize "hybrids outnumber pure-SSM" over backbone-proposing papers; P10 RCT clause NON-load-bearing (may not resolve by Dec 2026), ≥3 papers sufficient.
+Recommended final 10: P1, P2, P3, P4, P5, **P6′=multimodal**, P8-diffusion, P9-hybrid, P10... + swap AI-math for P7-TTT (prestige bet). Biggest credibility risk = the denominator (criteria too easy = "unfalsifiable cheerleading"); 2nd = multimodal omission; 3rd = P10 RCT clause.
+
+## Integration (how the final 10 resolved the 3 critics)
+- Cut latent reasoning (unanimous). Added multimodal (critic 3). Corrected P5's false CVPR anchor + cut conf (critic 2). Recalibrated all conf down (critics 2+3). Rewrote all criteria share/rank/recognition vs ~7k program (critic 3). Kept AI-math in the 10 (critics 1+3 prestige) at honest 65%. Moved efficiency/overthinking (78%) + peer-review (76%) to watchlist to cap eval/meta at 2 and keep subfield diversity — transparently noted they out-rank the bold AI-math pick on probability. No criterion depends on SEO-suspect names or unverified IDs.
